@@ -1,4 +1,4 @@
-# 🎃 Hacktoberfest 2025 — Python Contribution Hub
+# Hacktoberfest 2025 — Python Repository
 
 <div align="center">
 
