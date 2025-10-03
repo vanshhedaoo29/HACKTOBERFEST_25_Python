@@ -1,4 +1,4 @@
-# Hacktoberfest 2025 — Python Starter Repository
+# Hacktoberfest 2025 — Python Repository
 
 Welcome! 🎉  
 This repository is a lightweight starter template for Hacktoberfest 2025 contributions focused on Python programs.
