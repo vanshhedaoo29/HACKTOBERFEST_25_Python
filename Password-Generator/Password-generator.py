@@ -5,9 +5,9 @@ import string
 
 def generate_password():
     """
-    Generate a random password based on user-selected options:
-    - Length
-    - Inclusion of letters, digits, symbols
+    Generate a random password containing at least
+    one letter, one digit, and one symbol.
+    Display it in the read-only password entry.
     """
     try:
         length = int(length_entry.get())
@@ -21,30 +21,19 @@ def generate_password():
         messagebox.showerror("Error", "Please enter a valid number")
         return
 
-    # Gather character sets based on checkboxes
-    all_chars = ""
-    required_chars = []
+    letters = string.ascii_letters
+    digits = string.digits
+    symbols = string.punctuation
 
-    if include_letters.get():
-        all_chars += string.ascii_letters
-        required_chars.append(random.choice(string.ascii_letters))
+    # Ensure at least one letter, digit, symbol
+    password = [
+        random.choice(letters),
+        random.choice(digits),
+        random.choice(symbols)
+    ]
 
-    if include_digits.get():
-        all_chars += string.digits
-        required_chars.append(random.choice(string.digits))
-
-    if include_symbols.get():
-        all_chars += string.punctuation
-        required_chars.append(random.choice(string.punctuation))
-
-    if not all_chars:
-        messagebox.showerror("Error", "Select at least one character type")
-        return
-
-    # Fill the rest of the password
-    remaining_length = length - len(required_chars)
-    password = required_chars + random.choices(all_chars, k=remaining_length)
-
+    all_chars = letters + digits + symbols
+    password += random.choices(all_chars, k=length - 3)
     random.shuffle(password)
     password_str = ''.join(password)
 
@@ -55,9 +44,7 @@ def generate_password():
     password_entry.config(state='readonly')
 
 def copy_to_clipboard():
-    """
-    Copy the generated password to the clipboard
-    """
+    #Copy the generated password to the clipboard.
     password = password_entry.get()
     if password:
         root.clipboard_clear()
@@ -66,45 +53,25 @@ def copy_to_clipboard():
     else:
         messagebox.showwarning("Warning", "No password to copy!")
 
-def is_digit_input(input_str):
-    """
-    Validate that only digits are allowed in the entry
-    """
-    return input_str.isdigit() or input_str == ""
-
-# ---- GUI Setup ----
+# Create main window
 root = tk.Tk()
 root.title("Password Generator")
-root.geometry("400x300")
+root.geometry("400x220")
 root.resizable(False, False)
 
-# Instruction Label
-tk.Label(root, text="Enter password length:").pack(pady=(10, 2))
 
-# Entry for length (with digit-only validation)
-vcmd = (root.register(is_digit_input), '%P')
-length_entry = tk.Entry(root, validate='key', validatecommand=vcmd)
-length_entry.insert(0, "12")  # Default value
-length_entry.pack(pady=2)
+tk.Label(root, text="Enter password length:").pack(pady=10)
+length_entry = tk.Entry(root)
+length_entry.pack()
 
-# Checkboxes for character types
-include_letters = tk.BooleanVar(value=True)
-include_digits = tk.BooleanVar(value=True)
-include_symbols = tk.BooleanVar(value=True)
 
-tk.Checkbutton(root, text="Include Letters", variable=include_letters).pack()
-tk.Checkbutton(root, text="Include Digits", variable=include_digits).pack()
-tk.Checkbutton(root, text="Include Symbols", variable=include_symbols).pack()
-
-# Generate button
 tk.Button(root, text="Generate Password", command=generate_password).pack(pady=10)
 
-# Read-only password output
-password_entry = tk.Entry(root, width=40, state='readonly', justify='center')
+#Read-only password entry
+password_entry = tk.Entry(root, width=40, state='readonly')
 password_entry.pack(pady=10)
 
-# Copy button
-tk.Button(root, text="Copy to Clipboard", command=copy_to_clipboard).pack()
 
-# Run the GUI
+tk.Button(root, text="Copy to Clipboard", command=copy_to_clipboard).pack(pady=10)
+
 root.mainloop()
