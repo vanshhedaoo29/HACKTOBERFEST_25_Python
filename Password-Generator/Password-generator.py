@@ -4,10 +4,18 @@ import random
 import string
 
 def generate_password():
+    """
+    Generate a random password containing at least
+    one letter, one digit, and one symbol.
+    Display it in the read-only password entry.
+    """
     try:
         length = int(length_entry.get())
         if length < 3:
             messagebox.showerror("Error", "Password length must be at least 3")
+            return
+        if length > 50:
+            messagebox.showerror("Error", "Password length must not exceed 50")
             return
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number")
@@ -29,12 +37,14 @@ def generate_password():
     random.shuffle(password)
     password_str = ''.join(password)
 
-    # Display password
+    # Display password in read-only entry
+    password_entry.config(state='normal')
     password_entry.delete(0, tk.END)
     password_entry.insert(0, password_str)
-
+    password_entry.config(state='readonly')
 
 def copy_to_clipboard():
+    #Copy the generated password to the clipboard.
     password = password_entry.get()
     if password:
         root.clipboard_clear()
@@ -57,8 +67,8 @@ length_entry.pack()
 
 tk.Button(root, text="Generate Password", command=generate_password).pack(pady=10)
 
-
-password_entry = tk.Entry(root, width=40)
+#Read-only password entry
+password_entry = tk.Entry(root, width=40, state='readonly')
 password_entry.pack(pady=10)
 
 
