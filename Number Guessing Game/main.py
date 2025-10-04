@@ -4,8 +4,12 @@ n = random.randint(1, 100)
 a = -1
 guesses = 1  
 
-print("Welcome to the guessing game")
-print("Please guess number between 1 - 100")
+print("=" * 40)
+print(" Welcome to the Number Guessing Game ")
+print("=" * 40)
+print("I'm thinking of a number between 1 and 100.")
+print("Try to guess it!")
+print("-" * 40)
 
 while(a != n):
     a = int(input("Guess the number: "))
