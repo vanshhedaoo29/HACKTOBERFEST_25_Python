@@ -7,6 +7,12 @@ build/
 .env
 .vscode/
 .ipynb_checkpoints/
+*.log
+*.sqlite3
+*.db
+*.coverage
+*.pyo
+*.pyd
 
 # Virtual environment
 .venv/
@@ -14,3 +20,24 @@ venv/
 
 # Wordlists
 Password-Generator/eff_large_wordlist.txt
+
+# IDEs and editors
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Testing and coverage
+htmlcov/
+coverage.xml
+.cache/
+.tox/
+.pytest_cache/
+nosetests.xml
+test-results/
+
+# Jupyter Notebook
+*.ipynb
