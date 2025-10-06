@@ -164,21 +164,3 @@ For example: Consider the array **arr[] = {10, 50, 30, 70, 80, 20, 90, 40}** and
 1. Compare the target with each element one by one starting from the first.  
 2. Compare with the second element → not equal → move to next.  
 3. Compare with the third element → match found → return index 2.
-
-```python
-def search(arr, x):
-    n = len(arr)
-    for i in range(n):
-        if arr[i] == x:
-            return i
-    return -1
-
-if __name__ == "__main__":  # pragma: no cover
-    arr = [2, 3, 4, 10, 40]
-    x = 10
-    result = search(arr, x)
-    if result == -1:
-        print("Element is not present in array")
-    else:
-        print("Element is present at index", result)
-```
