@@ -16,3 +16,15 @@ def sample_arrays():
         "strings": ["apple", "banana", "cherry"],
         "mixed_types": [1, "two", 3.0],
     }
+
+@pytest.fixture
+def sorted_arrays():
+    return {
+        "basic": [2, 3, 4, 10, 40],
+        "long": [1, 3, 5, 7, 9, 11, 13, 15, 17],
+        "single": [5],
+        "empty": [],
+        "duplicates": [1, 2, 2, 2, 3],
+        "negatives": [-10, -5, 0, 5, 10],
+        "strings": ["apple", "banana", "cherry", "date"],
+    }
