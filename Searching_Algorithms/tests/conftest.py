@@ -52,10 +52,13 @@ def interpolation_search_arrays():
         "basic": [10, 12, 13, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47],
         "empty": [],
         "negatives": [-20, -10, 0, 10, 20],
-        "not_found": [10, 12, 13, 16, 18],
         "single": [7],
         "small": [10, 12, 15],
-        "duplicates": [10, 12, 13, 10, 13],
+        "duplicates": [10, 10, 12, 13, 13],
+        "all_equal": [5, 5, 5, 5],
+        "not_found": [10, 12, 13, 16, 18],
+        "strings": ["a", "b", "c", "d"],
+        "mixed_types": [1, "two", 3.0],
     }
 
 # --- JUMP SEARCH FIXTURE ---
