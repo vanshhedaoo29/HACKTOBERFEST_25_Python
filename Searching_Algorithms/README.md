@@ -11,15 +11,21 @@
   - [Running Unit Tests](#running-unit-tests)
   - [Manual Testing](#manual-testing)
 - [Algorithms](#algorithms)
-    - [Binary Search](#binary-search)
-        - [Problem](#problem)
-        - [Code](/Searching_Algorithms/binary_search.py)
-    - [Fibonacci Search](/Searching_Algorithms/fibonacci_search.py)
-    - [Interpolation Search](/Searching_Algorithms/interpolation_search.py)
-    - [Jump Search](/Searching_Algorithms/jump_search.py)
-    - [Linear Search](/Searching_Algorithms/linear_search.py)
-      - [Problem](#problem-2)
-      - [Code](/Searching_Algorithms/linear_search.py)
+  - [Binary Search](#binary-search)
+    - [Problem](#problem)
+    - [Code](/Searching_Algorithms/binary_search.py)
+  - [Fibonacci Search](#fibonacci-search)
+    - [Problem](#problem-1)
+    - [Code](/Searching_Algorithms/fibonacci_search.py)
+  - [Interpolation Search](#interpolation-search)
+    - [Problem](#problem-2)
+    - [Code](/Searching_Algorithms/interpolation_search.py)
+  - [Jump Search](#jump-search)
+    - [Problem](#problem-3)
+    - [Code](/Searching_Algorithms/jump_search.py)
+  - [Linear Search](#linear-search)
+    - [Problem](#problem-4)
+    - [Code](/Searching_Algorithms/linear_search.py)
 
 
 ## Introduction
@@ -201,8 +207,37 @@ x = 85
 
 
 ### Interpolation Search  
-*Coming soon…*
+**Source**: [Interpolation Search](https://www.geeksforgeeks.org/dsa/interpolation-search/)
 
+#### Problem  
+Given a **sorted array** `arr[]` of `n` uniformly distributed values and a target element `x`, search for `x` and return its index if found, otherwise return -1.
+
+> **Input**: arr[] = [10, 12, 13, 16, 18, 19, 20, 21, 22, 23], x = 18  
+> **Output**: 4  
+> **Explanation**: The element 18 is present atgit s index 4.
+
+> **Input**: arr[] = [10, 12, 13, 16, 18, 19, 20, 21, 22, 23], x = 17  
+> **Output**: -1  
+> **Explanation**: The element 17 is not present in the array.
+
+#### Description
+Interpolation Search improves on Binary Search when values are uniformly distributed. Instead of always probing the middle element, it probes a position computed by estimating where the target should be relative to the values at the current low and high indices, so searches tend to move closer to the target on average.
+
+#### Probe Position Formula
+The probe position `pos` is computed as:
+```text
+pos = lo + ((x - arr[lo]) * (hi - lo)) / (arr[hi] - arr[lo])
+```
+This formula returns a higher `pos` when `x` is closer to `arr[hi]` and a smaller `pos` when `x` is closer to `arr[lo]`.
+
+#### Algorithm
+1. Initialize `lo` and `hi` to the bounds of the array.
+2. While `lo <= hi` and `x` is between `arr[lo]` and `arr[hi]`:
+    - Compute `pos` using the probe position formula.
+    - If `arr[pos] == x`, return `pos`.
+    - If `arr[pos] < x`, set `lo = pos + 1`.
+    - If `arr[pos] > x`, set `hi = pos - 1`.
+3. If a match is not found, return -1.
 
 ### Jump Search
 **Source**: [Jump Search](https://www.geeksforgeeks.org/dsa/jump-search/)

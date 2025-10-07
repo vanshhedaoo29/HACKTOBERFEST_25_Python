@@ -1,6 +1,6 @@
 import pytest
 
-# --- LINEAR SEARCH FIXTURE ---------------------------------------------------
+# --- LINEAR SEARCH FIXTURE ---
 @pytest.fixture
 def linear_search_arrays():
     return {
@@ -18,7 +18,7 @@ def linear_search_arrays():
         "mixed_types": [1, "two", 3.0],
     }
 
-# --- BINARY SEARCH FIXTURE ---------------------------------------------------
+# --- BINARY SEARCH FIXTURE ---
 @pytest.fixture
 def binary_search_arrays():
     return {
@@ -31,7 +31,7 @@ def binary_search_arrays():
         "strings": ["apple", "banana", "cherry", "date"],
     }
 
-# --- FIBONACCI SEARCH FIXTURE ------------------------------------------------
+# --- FIBONACCI SEARCH FIXTURE ---
 @pytest.fixture
 def fibonacci_search_arrays():
     return {
@@ -45,39 +45,39 @@ def fibonacci_search_arrays():
         "strings": ["apple", "banana", "cherry", "date"],
     }
 
-# --- JUMP SEARCH FIXTURE -----------------------------------------------------
+# --- INTERPOLATION SEARCH FIXTURE ---
 @pytest.fixture
-def jump_search_basic_cases():
-    return [
-        ([1, 2, 3, 4, 5], 3, 2),
-        ([1, 2, 3, 4, 5], 1, 0),
-        ([1, 2, 3, 4, 5], 5, 4),
-        ([1, 3, 5, 7], 4, -1),
-        ([1, 2, 3], 4, -1),
-        ([], 1, -1),
-        ([5], 5, 0),
-        ([5], 3, -1),
-        ([10, 20, 30], 5, -1),
-        ([1, 2, 4, 5], 3, -1),
-    ]
+def interpolation_search_arrays():
+    return {
+        "basic": [10, 12, 13, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47],
+        "empty": [],
+        "negatives": [-20, -10, 0, 10, 20],
+        "not_found": [10, 12, 13, 16, 18],
+        "single": [7],
+        "small": [10, 12, 15],
+        "duplicates": [10, 12, 13, 10, 13],
+    }
 
+# --- JUMP SEARCH FIXTURE ---
 @pytest.fixture
-def jump_search_duplicates_array():
-    return [1, 2, 2, 2, 3]
+def jump_search_arrays():
+    return {
+        "basic": [1, 2, 3, 4, 5],
+        "between_values": [1, 3, 5, 7],
+        "beyond_end": [1, 2, 3],
+        "empty": [],
+        "single_match": [5],
+        "single_miss": [5],
+        "smaller_than_first": [10, 20, 30],
+        "final_return_block": [1, 2, 4, 5],
+        "duplicates": [1, 2, 2, 2, 3],
+        "block_boundary": [1, 2, 4, 5, 6, 7, 9, 10, 11],
+        "various_types_int": [1, 2, 3, 4],
+        "various_types_float": [1.0, 2.5, 3.5],
+        "various_types_str": ["a", "b", "c"],
+    }
 
-@pytest.fixture
-def jump_search_various_types():
-    return [
-        ([1, 2, 3, 4], 2, 1),
-        ([1.0, 2.5, 3.5], 2.5, 1),
-        (["a", "b", "c"], "b", 1),
-    ]
-
-@pytest.fixture
-def jump_search_block_boundary():
-    return [1, 2, 4, 5, 6, 7, 9, 10, 11]
-
-# --- SHARED / GENERIC FIXTURES ----------------------------------------------
+# --- SHARED / GENERIC FIXTURES ---
 @pytest.fixture(scope="session")
 def test_metadata():
     """Global configuration for algorithm tests."""
