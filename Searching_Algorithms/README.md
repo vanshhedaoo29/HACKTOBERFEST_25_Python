@@ -129,7 +129,73 @@ For example: Consider an array **arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}**
 3. **New range**: low = 5, high = 6 → mid = 5 → arr[5] = 23 → Match found → return index 5
 
 ### Fibonacci Search  
-*Coming soon…*
+Source: [Fibonacci Search](https://www.geeksforgeeks.org/dsa/fibonacci-search/)
+
+#### Problem  
+Given a **sorted array** `arr[]` of size `n` and an integer `x`, check whether `x` is present in the array. Return the **index** of `x` if found, or **-1** if it is not present.
+
+> **Input**: arr[] = [2, 3, 4, 10, 40], x = 10  
+> **Output**: 3  
+> **Explanation**: 10 is present at index 3.
+
+> **Input**: arr[] = [2, 3, 4, 10, 40], x = 11  
+> **Output**: -1  
+> **Explanation**: 11 is not present in the given array.
+
+#### Description  
+Fibonacci Search is a comparison-based technique that uses Fibonacci numbers to search for an element in a **sorted array**. It is similar to Binary Search in that it uses a divide-and-conquer strategy and has logarithmic time complexity.
+
+#### Similarities with Binary Search  
+- Works only on **sorted arrays**  
+- Divide and conquer algorithm  
+- Time complexity: **O(log n)**
+
+#### Differences from Binary Search  
+- Fibonacci Search divides the array into **unequal parts**  
+- It avoids the division operator (`/`) and instead uses **addition and subtraction**  
+- This can be beneficial on CPUs where division is costly  
+- It examines **closer elements** in subsequent steps, which may help when the array is too large to fit in CPU cache or RAM
+
+#### Background  
+Fibonacci numbers are defined recursively as:  
+- F(0) = 0, F(1) = 1  
+- F(n) = F(n-1) + F(n-2)
+
+First few Fibonacci numbers:  
+`0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...`
+
+Approximate relationships used in the algorithm:  
+- F(n - 2) ≈ (1/3) * F(n)  
+- F(n - 1) ≈ (2/3) * F(n)
+
+#### Fibonacci Search Algorithm  
+1. Find the smallest Fibonacci number greater than or equal to the length of the array (`n`). Let this be `fibM`.  
+2. Let `fibMm1` and `fibMm2` be the two preceding Fibonacci numbers.  
+3. Initialize `offset = -1`.  
+4. While `fibM > 1`:
+   - Compare `arr[min(offset + fibMm2, n-1)]` with `x`.
+   - If equal, return the index.
+   - If `x < arr[i]`, move the Fibonacci window two steps down.
+   - If `x > arr[i]`, move the window one step down and update `offset = i`.
+5. If one element remains (`fibMm1 == 1`), check if it matches `x`.
+
+#### Solution  
+Let’s walk through an example:
+
+```text
+arr[] = [10, 22, 35, 40, 45, 50, 80, 82, 85, 90, 100]
+x = 85
+```
+
+- Length of array `n = 11`
+- Smallest Fibonacci number ≥ 11 is `13`
+- Initial Fibonacci numbers: `fibM = 13`, `fibMm1 = 8`, `fibMm2 = 5`
+- Start with `offset = -1`
+- Compare `arr[4] = 45` → 85 > 45 → move window forward
+- Update `offset = 4`, Fibonacci numbers shift
+- Compare `arr[7] = 82` → 85 > 82 → move window forward
+- Update `offset = 7`, Fibonacci numbers shift
+- Compare `arr[8] = 85` → match found → return index 8
 
 ### Interpolation Search  
 *Coming soon…*

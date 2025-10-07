@@ -1,7 +1,7 @@
 import pytest
 
 @pytest.fixture
-def sample_arrays():
+def linear_serach_arrays():
     return {
         "basic": [1, 2, 3, 4],
         "mixed": [10, 8, 30, 4, 5],
@@ -18,7 +18,7 @@ def sample_arrays():
     }
 
 @pytest.fixture
-def sorted_arrays():
+def binary_search_arrays():
     return {
         "basic": [2, 3, 4, 10, 40],
         "long": [1, 3, 5, 7, 9, 11, 13, 15, 17],
@@ -26,5 +26,18 @@ def sorted_arrays():
         "empty": [],
         "duplicates": [1, 2, 2, 2, 3],
         "negatives": [-10, -5, 0, 5, 10],
+        "strings": ["apple", "banana", "cherry", "date"],
+    }
+
+@pytest.fixture
+def fibonacci_search_arrays():
+    return {
+        "basic": [2, 3, 4, 10, 40],
+        "not_found": [2, 3, 4, 10, 40],
+        "long": [10, 22, 35, 40, 45, 50, 80, 82, 85, 90, 100],
+        "single_match": [5],
+        "single_miss": [7],
+        "empty": [],
+        "negatives": [-20, -10, -5, 0, 5, 10],
         "strings": ["apple", "banana", "cherry", "date"],
     }
