@@ -1,4 +1,4 @@
-def search(arr, x):
+def linearSearch(arr, x):
     n = len(arr)
     
     # Iterate over the array in order to
@@ -12,7 +12,7 @@ if __name__ == "__main__": # pragma: no cover
     arr = [2, 3, 4, 10, 40]
     x = 10
 
-    result = search(arr, x)
+    result = linearSearch(arr, x)
     if(result == -1):
         print("Element is not present in array")
     else:

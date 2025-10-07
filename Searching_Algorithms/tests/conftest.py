@@ -1,7 +1,7 @@
 import pytest
 
 @pytest.fixture
-def linear_serach_arrays():
+def linear_search_arrays():
     return {
         "basic": [1, 2, 3, 4],
         "mixed": [10, 8, 30, 4, 5],
@@ -17,6 +17,7 @@ def linear_serach_arrays():
         "mixed_types": [1, "two", 3.0],
     }
 
+# Binary Search
 @pytest.fixture
 def binary_search_arrays():
     return {
@@ -29,6 +30,7 @@ def binary_search_arrays():
         "strings": ["apple", "banana", "cherry", "date"],
     }
 
+# Fibonacci Search
 @pytest.fixture
 def fibonacci_search_arrays():
     return {
@@ -41,3 +43,25 @@ def fibonacci_search_arrays():
         "negatives": [-20, -10, -5, 0, 5, 10],
         "strings": ["apple", "banana", "cherry", "date"],
     }
+
+# Jump Search
+@pytest.fixture
+def jump_search_cases():
+    """All jump search test cases in one simple fixture"""
+    return [
+        # Basic found cases
+        ([1, 2, 3, 4, 5], 3, 2),
+        ([1, 2, 3, 4, 5], 1, 0),
+        ([1, 2, 3, 4, 5], 5, 4),
+        
+        # Edge cases
+        ([], 1, -1),
+        ([5], 5, 0),
+        ([5], 3, -1),
+        ([10, 20, 30], 5, -1),
+        
+        # Not found cases
+        ([1, 2, 3], 4, -1),
+        ([1, 3, 5, 7], 4, -1),
+        ([1, 2, 4, 5], 3, -1),
+    ]

@@ -1,5 +1,5 @@
 # Returns index of x if present, else returns -1
-def search(arr, x):
+def fibonacciSearch(arr, x):
     n = len(arr)
 
     if n == 0:
@@ -59,4 +59,4 @@ def search(arr, x):
 if __name__ == "__main__": # pragma: no cover
     arr = [2, 3, 4, 10, 40]
     x = 10
-    print(search(arr, x))
+    print(fibonacciSearch(arr, x))

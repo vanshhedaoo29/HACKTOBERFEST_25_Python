@@ -92,6 +92,7 @@ You can manually test each algorithm by modifying the input arrays and target va
 
 ## Algorithms
 
+
 ### Binary Search  
 **Source**: [Binary Search](https://www.geeksforgeeks.org/dsa/binary-search/)
 
@@ -128,8 +129,9 @@ For example: Consider an array **arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}**
 2. **New range**: low = 5, high = 9 → mid = 7 → arr[7] = 56 → 23 < 56 → search left half  
 3. **New range**: low = 5, high = 6 → mid = 5 → arr[5] = 23 → Match found → return index 5
 
+
 ### Fibonacci Search  
-Source: [Fibonacci Search](https://www.geeksforgeeks.org/dsa/fibonacci-search/)
+**Source**: [Fibonacci Search](https://www.geeksforgeeks.org/dsa/fibonacci-search/)
 
 #### Problem  
 Given a **sorted array** `arr[]` of size `n` and an integer `x`, check whether `x` is present in the array. Return the **index** of `x` if found, or **-1** if it is not present.
@@ -197,11 +199,53 @@ x = 85
 - Update `offset = 7`, Fibonacci numbers shift
 - Compare `arr[8] = 85` → match found → return index 8
 
+
 ### Interpolation Search  
 *Coming soon…*
 
-### Jump Search  
-*Coming soon…*
+
+### Jump Search
+**Source**: [Jump Search](https://www.geeksforgeeks.org/dsa/jump-search/)
+
+#### Problem  
+Given a **sorted array** `arr[]` of `n` elements and a target value `x`, find the **index** of `x` if it is present in the array. Otherwise, return **-1**.
+
+> **Input**: arr[] = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610], x = 55  
+> **Output**: 10  
+> **Explanation**: The element 55 is present at index 10.
+
+#### Description  
+**Jump Search** is a searching algorithm for **sorted arrays** that reduces the number of comparisons by jumping ahead by fixed steps instead of checking every element. Once the interval containing the target is found, a **linear search** is performed within that block.
+
+It is more efficient than **Linear Search**, but generally slower than **Binary Search**.
+
+#### Key Characteristics  
+- Works only on **sorted arrays**  
+- Optimal jump size is **√n**  
+- Time complexity: **O(√n)**  
+- Auxiliary space: **O(1)**  
+- Useful when division operations are costly or when binary search is not ideal
+
+#### Jump Search Algorithm  
+1. Calculate the optimal block size `m = √n`.  
+2. Start at index `0`, and jump ahead by `m` until `arr[j] ≥ x` or end of array is reached.  
+3. Once the block is found, perform a **linear search** from the previous jump point to the current index.  
+4. If the target is found, return its index. Otherwise, return -1.
+
+#### Solution  
+Let’s walk through an example:
+
+```text
+arr[] = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
+x = 55
+```
+
+- Array length `n = 16` → optimal jump size `m = √16 = 4`
+- Jump from index 0 → 4 → 8 → 12  
+- At index 12, `arr[12] = 144` > 55 → jump back to index 8  
+- Perform linear search from index 8 to 12  
+- `arr[10] = 55` → match found → return index 10
+
 
 ### Linear Search  
 **Source**: [Linear Search Algorithm](https://www.geeksforgeeks.org/dsa/linear-search/)
