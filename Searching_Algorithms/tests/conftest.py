@@ -49,14 +49,13 @@ def fibonacci_search_arrays():
 @pytest.fixture
 def interpolation_search_arrays():
     return {
-        "basic": [10, 12, 13, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47],
-        "empty": [],
-        "negatives": [-20, -10, 0, 10, 20],
-        "not_found": [10, 12, 13, 16, 18],
-        "single": [7],
-        "small": [10, 12, 15],
-        "duplicates": [10, 10, 12, 13, 13],  # sorted, duplicates
-        "all_equal": [5, 5, 5, 5],
+        "basic": [10, 20, 30, 40, 50],
+        "small": [5, 10, 15],
+        "tiny": [1, 2, 3],
+        "all_equal": [7, 7, 7, 7],
+        "single": [10],
+        "out_of_range": [10, 20, 30],
+        "go_left": [10, 11, 12, 12, 12],
     }
 
 # --- JUMP SEARCH FIXTURE ---
@@ -76,14 +75,4 @@ def jump_search_arrays():
         "various_types_int": [1, 2, 3, 4],
         "various_types_float": [1.0, 2.5, 3.5],
         "various_types_str": ["a", "b", "c"],
-    }
-
-# --- SHARED / GENERIC FIXTURES ---
-@pytest.fixture(scope="session")
-def test_metadata():
-    """Global configuration for algorithm tests."""
-    return {
-        "float_tolerance": 1e-9,
-        "max_runtime_seconds": 2,
-        "categories": ["search", "sort", "graph", "string"],
     }
