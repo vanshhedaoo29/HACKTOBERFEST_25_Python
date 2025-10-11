@@ -1,17 +1,19 @@
-def linear_search(arr, target):
-    for i, num in enumerate(arr):
-        if num == target:
+def linearSearch(arr, x):
+    n = len(arr)
+    
+    # Iterate over the array in order to
+    # find the key x
+    for i in range(0, n):
+        if (arr[i] == x):
             return i
     return -1
 
-if __name__ == "__main__":
-    try:
-        arr = list(map(int, input("Enter numbers (space-separated): ").split()))
-        target = int(input("Enter number to search: "))
-        index = linear_search(arr, target)
-        if index != -1:
-            print(f"Element found at index {index}")
-        else:
-            print("Element not found")
-    except ValueError:
-        print("Please enter valid integers.")
+if __name__ == "__main__": # pragma: no cover
+    arr = [2, 3, 4, 10, 40]
+    x = 10
+
+    result = linearSearch(arr, x)
+    if(result == -1):
+        print("Element is not present in array")
+    else:
+        print("Element is present at index", result)

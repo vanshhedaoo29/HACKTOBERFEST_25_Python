@@ -1,28 +1,40 @@
-def interpolation_search(arr, target):
-    low, high = 0, len(arr) - 1
-    while low <= high and arr[low] <= target <= arr[high]:
+def interpolationSearch(arr, low, high, x):
+    # Since array is sorted, an element present
+    # in array must be in range defined by corner
+    if (low <= high and x >= arr[low] and x <= arr[high]):
         if arr[high] == arr[low]:
-            if arr[low] == target:
-                return low
-            return -1
-        pos = low + ((target - arr[low]) * (high - low) // (arr[high] - arr[low]))
-        if arr[pos] == target:
+            return low if arr[low] == x else -1
+
+        # Probing the position with keeping
+        # uniform distribution in mind.
+        pos = low + ((high - low) // (arr[high] - arr[low]) * (x - arr[low]))
+
+        # This guard is defensive; for the integer formula and the
+        # outer if-condition pos will always be inside [low, high].
+        # Mark as no cover to avoid unreachable-code coverage failures.
+        if pos < low or pos > high:
+            return -1  # pragma: no cover
+
+        # Condition of target found
+        if arr[pos] == x:
             return pos
-        if arr[pos] < target:
-            low = pos + 1
+        # If x is larger, x is in right subarray
+        elif arr[pos] < x:
+            return interpolationSearch(arr, pos + 1, high, x)
+        # If x is smaller, x is in left subarray
         else:
-            high = pos - 1
+            return interpolationSearch(arr, low, pos - 1, x)
+
     return -1
 
-if __name__ == "__main__":
-    try:
-        arr = list(map(int, input("Enter numbers (space-separated): ").split()))
-        arr.sort()
-        target = int(input("Enter number to search: "))
-        index = interpolation_search(arr, target)
-        if index != -1:
-            print(f"Element found at index {index} in sorted list {arr}")
-        else:
-            print("Element not found")
-    except ValueError:
-        print("Please enter valid sorted integers.")
+  
+if __name__ == "__main__":  # pragma: no cover
+    arr = [10, 12, 13, 16, 18, 19, 20, 21,
+           22, 23, 24, 33, 35, 42, 47]
+    x = 18
+    index = interpolationSearch(arr, 0, len(arr) - 1, x)
+    if index != -1:
+        print("Element found at index", index)
+    else:
+        print("Element not found")
+        
