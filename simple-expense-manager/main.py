@@ -58,6 +58,41 @@ def summary_by_category():
         print(f"{cat:<15}: ₹{total:.2f}")
     print()
 
+# Adding function to delete expenses
+def delete_expense():
+    if not os.path.exists(FILENAME):
+        print("⚠️ No expense file found. Nothing to delete.")
+        return
+
+    expenses = []
+    with open(FILENAME, "r") as file:
+        reader = csv.reader(file)
+        header = next(reader)
+        for row in reader:
+            expenses.append(row)
+
+    if not expenses:
+        print("There are no expenses to delete.")
+        return
+    
+    print("\n📝 Current Expenses:")
+    for i, row in enumerate(expenses, 1):
+        print(f"{i}. {row[0]:<12} {row[1]:<12} {row[2]:<20} ₹{row[3]:>6}")
+    
+    try:
+        index_to_delete = int(input("\nEnter the number of the expense to delete: ")) - 1
+        if 0 <= index_to_delete < len(expenses):
+            deleted_expense = expenses.pop(index_to_delete)
+            with open(FILENAME, "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(header)
+                writer.writerows(expenses)
+            print(f"🗑️ Expense '{deleted_expense[2]}' deleted successfully!")
+        else:
+            print("❌ Invalid number.")
+    except ValueError:
+        print("❌ Invalid input. Please enter a number.")
+
 def main():
     init_file()
     while True:
@@ -65,7 +100,8 @@ def main():
         print("1. Add Expense")
         print("2. View All Expenses")
         print("3. View Summary by Category")
-        print("4. Exit")
+        print("4. Delete an Expense")  # New option
+        print("5. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -75,6 +111,8 @@ def main():
         elif choice == "3":
             summary_by_category()
         elif choice == "4":
+                delete_expense()        
+        elif choice == "5": 
             print("👋 Goodbye!")
             break
         else:
